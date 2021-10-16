@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Author: James Johnson
+// Purpose: Template created to demonstrate math operations
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +18,7 @@ namespace CashRegisterSummative
 {
     public partial class Form1 : Form
     {
-
+        // Declaring Variables
         double clockPrice = 40.45;
         double penPrice = 16.43;
         double postItNotePrice = 8.45;
@@ -40,9 +44,10 @@ namespace CashRegisterSummative
 
         public Form1()
         {
+            // This is called when the program starts
             InitializeComponent();
             this.Size = new Size(410, 497);
-            printSound = new SoundPlayer(Properties.Resources.printSound); 
+            printSound = new SoundPlayer(Properties.Resources.printSound);
             WaitingForOrder();
         }
 
@@ -81,7 +86,7 @@ namespace CashRegisterSummative
                 calcTotalButton.Enabled = false;
                 tenderedInput.Enabled = true;
 
-                if (totalCost == 0 && orderLabel.Text == "Order Here!") // Try ordering nothing
+                if (totalCost == 0) // Try ordering nothing
                 {
                     orderLabel.Text = "...You're ordering nothing?";
                 }
@@ -92,27 +97,29 @@ namespace CashRegisterSummative
                 if (numOfClocksInput.Text == "") // If nothing is detected or doesn't format correctly. Default to 0
                 {
                     clockQuantity = 0;
-                } else
+                }
+                else
                 {
                     try
                     {
-                    clockQuantity = Convert.ToInt32(numOfClocksInput.Text); // This is called if we get an error
+                        clockQuantity = Convert.ToInt32(numOfClocksInput.Text); // This is called if we get an error
                         // and we still need to update 
                     }
                     catch
                     {
                         orderLabel.Text = "Please Input a Whole Number";
                     }
-                }                                                           
+                }
 
                 if (numOfPensInput.Text == "")
                 {
                     penQuantity = 0;
-                } else
+                }
+                else
                 {
                     try
                     {
-                    penQuantity = Convert.ToInt32(numOfPensInput.Text);
+                        penQuantity = Convert.ToInt32(numOfPensInput.Text);
                     }
                     catch
                     {
@@ -123,7 +130,8 @@ namespace CashRegisterSummative
                 if (numOfNotesInput.Text == "")
                 {
                     postItNoteQuantity = 0;
-                } else
+                }
+                else
                 {
                     try
                     {
@@ -135,11 +143,11 @@ namespace CashRegisterSummative
                     }
                 }
 
-                
+
             }
 
 
-         
+
         }
 
         private async void PrintReceipt()
@@ -161,59 +169,66 @@ namespace CashRegisterSummative
 
             if (clockQuantity > 0) // Checks to see if any clocks were ordered.
             {
-            receiptLabel.Text +=     $"\nClocks        x{clockQuantity} @ {clockTotalPrice.ToString("C")}"; // Adds the text to the receipt
-            await Task.Delay(500); //Waits
+                receiptLabel.Text += $"\nClocks        x{clockQuantity} @ {clockTotalPrice.ToString("C")}"; // Adds the text to the receipt
+                await Task.Delay(500); //Waits
             }
             recieptProgressBar.Value = 10; // Adds progress to the progress bar
             if (penQuantity > 0)
             {
-            receiptLabel.Text += $"\nPens        x{penQuantity} @ {penTotalPrice.ToString("C")}";
-            await Task.Delay(500);
+                receiptLabel.Text += $"\nPens        x{penQuantity} @ {penTotalPrice.ToString("C")}";
+                await Task.Delay(500);
             }
             recieptProgressBar.Value += 10;
             if (postItNoteQuantity > 0)
             {
-            receiptLabel.Text += $"\nNotes      x{postItNoteQuantity} @ {postItNoteTotalPrice.ToString("C")}";
-            await Task.Delay(500);
+                receiptLabel.Text += $"\nNotes      x{postItNoteQuantity} @ {postItNoteTotalPrice.ToString("C")}";
+                await Task.Delay(500);
             }
             recieptProgressBar.Value += 10;
             receiptLabel.Text += $"\n\nSubtotal      {basicTotalCost.ToString("C")}";
             recieptProgressBar.Value += 10;
             await Task.Delay(500);
-            receiptLabel.Text += $"\nTax     {taxAmount.ToString("C")}";
+
+            receiptLabel.Text += $"\nTax         {taxAmount.ToString("C")}";
             recieptProgressBar.Value += 10;
             await Task.Delay(500);
+
             receiptLabel.Text += $"\nTotal       {totalCost.ToString("C")}";
             recieptProgressBar.Value += 10;
             await Task.Delay(500);
+
             receiptLabel.Text += $"\n\nTendered      {tendered.ToString("C")}";
             recieptProgressBar.Value += 10;
             await Task.Delay(500);
+
             receiptLabel.Text += $"\nChange      {change.ToString("C")}";
             recieptProgressBar.Value += 10;
             await Task.Delay(500);
+
             receiptLabel.Text += $"\n\nThank you for Shopping at The Store(TM)!";
             recieptProgressBar.Value += 10;
             await Task.Delay(500);
+
             receiptLabel.Text += $"\n\nHave a nice day!!";
             recieptProgressBar.Value += 10;
             await Task.Delay(500);
+
             newOrderButton.Enabled = true; // Allows you to start a new order
             printSound.Stop();
         }
 
         private async void WaitingForOrder() //Show a breif animation when waiting for an Order
         {
-                waitingLabel.Text = "Waiting For Order.";
-                await Task.Delay(500); // This is able to delay without freezing the application & not allowing Input
-                Refresh();
-                waitingLabel.Text = "Waiting For Order..";
-                await Task.Delay(500);
-                Refresh();
-                waitingLabel.Text = "Waiting For Order...";
-                await Task.Delay(500);
-                Refresh();
-                WaitingForOrder();
+            waitingLabel.Text = "Waiting For Order.";
+            await Task.Delay(500); // This is able to delay without freezing the application & not allowing Input
+            Refresh();
+            waitingLabel.Text = "Waiting For Order..";
+            await Task.Delay(500);
+            Refresh();
+            waitingLabel.Text = "Waiting For Order...";
+            await Task.Delay(500);
+            Refresh();
+            WaitingForOrder();
         }
 
         private void printReceiptButton_Click(object sender, EventArgs e)
@@ -232,8 +247,8 @@ namespace CashRegisterSummative
 
             try
             {
-            tendered = Convert.ToInt32(tenderedInput.Text);
-            change = tendered - totalCost;
+                tendered = Convert.ToInt32(tenderedInput.Text);
+                change = tendered - totalCost;
             }
             catch
             {
@@ -247,7 +262,8 @@ namespace CashRegisterSummative
                 printReceiptButton.Enabled = true; //If everything works, you are allowed to print the receipt
                 tenderedInput.Enabled = false; // Disable the input that we just finished to prevent any issues
                 changeButton.Enabled = false;
-            } else 
+            }
+            else
             {
                 changeText.Text = $"Please Give more than {totalCost.ToString("C")}";
             }
@@ -256,8 +272,52 @@ namespace CashRegisterSummative
 
         private void newOrderButton_Click(object sender, EventArgs e)
         {
-            Application.Restart(); // Restarts the Application which resets everything
-            Environment.Exit(0);
+            clockQuantity = 0; // Resets almost every variable that does get changed during the useage of the program
+            penQuantity = 0;
+            postItNoteQuantity = 0;
+
+            clockTotalPrice = 0;
+            penTotalPrice = 0;
+            postItNoteTotalPrice = 0;
+
+            basicTotalCost = 0;
+            taxAmount = 0;
+            totalCost = 0;
+            tendered = 0;
+            change = 0;
+
+            numOfClocksInput.Text = ""; // Resets the Input text sections
+            numOfPensInput.Text = "";
+            numOfNotesInput.Text = "";
+
+            subTotalText.Text = $"$0.00"; // Show the totalText and such
+            taxText.Text = $"$0.00";
+            totalText.Text = $"$0.00";
+            changeText.Text = "$0.00";
+
+            receiptLabel.Text = "";
+            tenderedInput.Text = "";
+
+
+            waitingLabel.ForeColor = Color.Black; // Enables / Disables Buttons
+            printReceiptButton.Enabled = false;
+            changeButton.Enabled = false;
+            newOrderButton.Enabled = false;
+            changeButton.Enabled = false;
+
+            numOfClocksInput.Enabled = true; // ALot of code to reset everything
+            numOfPensInput.Enabled = true;
+            numOfNotesInput.Enabled = true;
+            tenderedInput.Enabled = false;
+            calcTotalButton.Enabled = true;
+            orderLabel.Text = "Order Here!";
+
+            receiptLabel.Visible = false;
+            recieptProgressBar.Visible = false;
+            newOrderButton.Visible = false;
+
+            recieptProgressBar.Value = 0; // Resets progress Bar
+            this.Size = new Size(410, 497); // Resets size to *not* show the receipt
         }
     }
 }

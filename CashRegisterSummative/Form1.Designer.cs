@@ -50,10 +50,10 @@ namespace CashRegisterSummative
             this.changeButton = new System.Windows.Forms.Button();
             this.changeText = new System.Windows.Forms.Label();
             this.newOrderButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.subtotalTitleLabel = new System.Windows.Forms.Label();
+            this.taxTitleLabel = new System.Windows.Forms.Label();
+            this.totalTitleText = new System.Windows.Forms.Label();
+            this.changeTextLabel = new System.Windows.Forms.Label();
             this.bottomLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -104,6 +104,7 @@ namespace CashRegisterSummative
             this.clockLabel.Size = new System.Drawing.Size(72, 16);
             this.clockLabel.TabIndex = 5;
             this.clockLabel.Text = "# of Clocks";
+            this.clockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pensLabel
             // 
@@ -113,6 +114,7 @@ namespace CashRegisterSummative
             this.pensLabel.Size = new System.Drawing.Size(62, 16);
             this.pensLabel.TabIndex = 6;
             this.pensLabel.Text = "# of Pens";
+            this.pensLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // notesLabel
             // 
@@ -122,6 +124,7 @@ namespace CashRegisterSummative
             this.notesLabel.Size = new System.Drawing.Size(67, 16);
             this.notesLabel.TabIndex = 7;
             this.notesLabel.Text = "# of Notes";
+            this.notesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // printReceiptButton
             // 
@@ -136,12 +139,12 @@ namespace CashRegisterSummative
             // 
             // orderLabel
             // 
-            this.orderLabel.Location = new System.Drawing.Point(89, 5);
+            this.orderLabel.Location = new System.Drawing.Point(83, -3);
             this.orderLabel.Name = "orderLabel";
-            this.orderLabel.Size = new System.Drawing.Size(129, 38);
+            this.orderLabel.Size = new System.Drawing.Size(163, 43);
             this.orderLabel.TabIndex = 9;
             this.orderLabel.Text = "Order Here!";
-            this.orderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.orderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // receiptLabel
             // 
@@ -149,10 +152,9 @@ namespace CashRegisterSummative
             this.receiptLabel.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.receiptLabel.Location = new System.Drawing.Point(532, 24);
             this.receiptLabel.Name = "receiptLabel";
-            this.receiptLabel.Size = new System.Drawing.Size(237, 311);
+            this.receiptLabel.Size = new System.Drawing.Size(231, 311);
             this.receiptLabel.TabIndex = 10;
-            this.receiptLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-//            this.receiptLabel.Click += new System.EventHandler(this.receiptLabel_Click);
+            this.receiptLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // waitingLabel
             // 
@@ -162,6 +164,7 @@ namespace CashRegisterSummative
             this.waitingLabel.Size = new System.Drawing.Size(133, 19);
             this.waitingLabel.TabIndex = 11;
             this.waitingLabel.Text = "Waiting For Order...";
+            this.waitingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // subTotalText
             // 
@@ -201,6 +204,7 @@ namespace CashRegisterSummative
             this.tenderedLabel.Size = new System.Drawing.Size(70, 16);
             this.tenderedLabel.TabIndex = 15;
             this.tenderedLabel.Text = "Tendered:";
+            this.tenderedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tenderedInput
             // 
@@ -242,41 +246,45 @@ namespace CashRegisterSummative
             this.newOrderButton.UseVisualStyleBackColor = true;
             this.newOrderButton.Click += new System.EventHandler(this.newOrderButton_Click);
             // 
-            // label1
+            // subtotalTitleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 198);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 16);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Sub Total:";
+            this.subtotalTitleLabel.AutoSize = true;
+            this.subtotalTitleLabel.Location = new System.Drawing.Point(9, 198);
+            this.subtotalTitleLabel.Name = "subtotalTitleLabel";
+            this.subtotalTitleLabel.Size = new System.Drawing.Size(68, 16);
+            this.subtotalTitleLabel.TabIndex = 20;
+            this.subtotalTitleLabel.Text = "Sub Total:";
+            this.subtotalTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // taxTitleLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 234);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 16);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Tax:";
+            this.taxTitleLabel.AutoSize = true;
+            this.taxTitleLabel.Location = new System.Drawing.Point(9, 234);
+            this.taxTitleLabel.Name = "taxTitleLabel";
+            this.taxTitleLabel.Size = new System.Drawing.Size(33, 16);
+            this.taxTitleLabel.TabIndex = 21;
+            this.taxTitleLabel.Text = "Tax:";
+            this.taxTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // totalTitleText
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 268);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 16);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "Total:";
+            this.totalTitleText.AutoSize = true;
+            this.totalTitleText.Location = new System.Drawing.Point(9, 268);
+            this.totalTitleText.Name = "totalTitleText";
+            this.totalTitleText.Size = new System.Drawing.Size(41, 16);
+            this.totalTitleText.TabIndex = 22;
+            this.totalTitleText.Text = "Total:";
+            this.totalTitleText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // changeTextLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 408);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 16);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "Change:";
+            this.changeTextLabel.AutoSize = true;
+            this.changeTextLabel.Location = new System.Drawing.Point(12, 408);
+            this.changeTextLabel.Name = "changeTextLabel";
+            this.changeTextLabel.Size = new System.Drawing.Size(57, 16);
+            this.changeTextLabel.TabIndex = 23;
+            this.changeTextLabel.Text = "Change:";
+            this.changeTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bottomLabel
             // 
@@ -293,10 +301,10 @@ namespace CashRegisterSummative
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(787, 576);
             this.Controls.Add(this.bottomLabel);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.changeTextLabel);
+            this.Controls.Add(this.totalTitleText);
+            this.Controls.Add(this.taxTitleLabel);
+            this.Controls.Add(this.subtotalTitleLabel);
             this.Controls.Add(this.newOrderButton);
             this.Controls.Add(this.changeText);
             this.Controls.Add(this.changeButton);
@@ -349,10 +357,10 @@ namespace CashRegisterSummative
         private System.Windows.Forms.Button changeButton;
         private System.Windows.Forms.Label changeText;
         private System.Windows.Forms.Button newOrderButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label subtotalTitleLabel;
+        private System.Windows.Forms.Label taxTitleLabel;
+        private System.Windows.Forms.Label totalTitleText;
+        private System.Windows.Forms.Label changeTextLabel;
         private System.Windows.Forms.Label bottomLabel;
     }
 }
